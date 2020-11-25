@@ -7,7 +7,7 @@ class Usuario extends Banco{
     private $alias;
     private $email;
     private $username;
-    private $senha;
+    private $password;
     private $userPerm;
 
     public function getId(){
@@ -22,8 +22,8 @@ class Usuario extends Banco{
     public function getUsername(){
         return $this->username;
     }
-    public function getSenha(){
-        return $this->senha;
+    public function getPassword(){
+        return $this->password;
     }
     public function getUserPerm(){
         return $this->userPerm;
@@ -42,8 +42,8 @@ class Usuario extends Banco{
     public function setUsername($username){
         $this->username = $username;
     }
-    public function setSenha($senha){
-        $this->senha = md5($senha);
+    public function setPassword($password){
+        $this->password = md5($password);
     }
     public function setUserPerm($userPerm){
         $this->userPerm = $userPerm;
@@ -64,7 +64,7 @@ class Usuario extends Banco{
             }else{
                 $query = "INSERT INTO user (id, username, alias, email, password, userPerm) values (null, :username, :alias, :email, :password, :userPerm)";
                 $stmt = $conn->prepare($query);
-                if($stmt-execute(array(':username'=>$this->username, ':alias'=>$this->alias, ':email'=>$this->email, ':password'=>$this->password, ':userPerm'=>$this->userPerm))){
+                if($stmt->execute(array(':username'=>$this->username, ':alias'=>$this->alias, ':email'=>$this->email, ':password'=>$this->password, ':userPerm'=>$this->userPerm))){
                     $result = $stmt->rowCount();
                 }
             }
@@ -93,7 +93,7 @@ class Usuario extends Banco{
             if($stmt->rowCount() > 0){
                 $result = $stmt->fetchObject(Usuario::class);
             }else{
-                $result = false
+                $result = false;
             }
         }
         return $result;
@@ -127,7 +127,7 @@ class Usuario extends Banco{
         $stmt = $conn->prepare($query);
         if($stmt->execute(array(':username'=>$this->username, ':password'=>$this->password))){
             if($stmt->rowCount() > 0){
-                $result = true;
+                $result = $stmt->fetchObject(Usuario::class);
             }else{
                 $result = false;
             }

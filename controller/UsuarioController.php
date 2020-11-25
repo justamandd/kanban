@@ -8,8 +8,8 @@ class UsuarioController{
         $usuario->setAlias($_POST['alias']);
         $usuario->setUsername($_POST['username']);
         $usuario->setEmail($_POST['email']);
-        $usuario->setSenha($_POST['senha']);
-        $usuario->setUserPerm($_POST['userperm']);
+        $usuario->setPassword($_POST['password']);
+        $usuario->setUserPerm(isset($_POST['userperm']) ? $_POST['userperm'] : 'C');
 
         $usuario->save();
     }

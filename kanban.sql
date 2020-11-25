@@ -19,7 +19,9 @@ create table board(
 );
 
 create table list(
-	
+	id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20),
+    id_boardList int
 );
 
 create table boardList(
@@ -30,3 +32,13 @@ create table boardList(
     foreign key(id_board) references board(id),
     foreign key(id_list) references list(id)
 );
+
+create table card(
+	id int PRIMARY KEY AUTO_INCREMENT,
+    name varchar(20),
+    description varchar(250),
+    id_list int,
+    foreign key(id_list) references list(id)
+);
+
+show tables;
