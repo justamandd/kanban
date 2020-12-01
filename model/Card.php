@@ -1,51 +1,37 @@
 <?php
 require_once 'Banco.php'; 
 require_once './Conexao.php';
-class Card extends Banco{   
+class Card extends Banco{
+    
     private $id;
-    private $alias;
-    private $email;
-    private $username;
-    private $password;
-    private $userPerm;
+    private $name;
+    private $description;
+    private $id_list = $_SESSION['list'];
 
     public function getId(){
         return $this->id;
     }
-    public function getAlias(){
-        return $this->alias;
+    public function getName(){
+        return $this->name;
     }
-    public function getEmail(){
-        return $this->email;
+    public function getDesc(){
+        return $this->description;
     }
-    public function getUsername(){
-        return $this->username;
+    public function getIdList(){
+        return $this->id_list;
     }
-    public function getPassword(){
-        return $this->password;
-    }
-    public function getUserPerm(){
-        return $this->userPerm;
-    }
-
 
     public function setId($id){
         $this->id = $id;
     }
-    public function setAlias($alias){
-        $this->alias = $alias;
+    public function setName($name){
+        $this->name = $name;
     }
-    public function setEmail($email){
-        $this->email = $email;
+    public function setDesc($desc){
+        $this->description = $desc;
     }
-    public function setUsername($username){
-        $this->username = $username;
-    }
-    public function setPassword($password){
-        $this->password = md5($password);
-    }
-    public function setUserPerm($userPerm){
-        $this->userPerm = $userPerm;
+    public function setIdList($id_list){
+        $this->id_list = $id_list;
     }
 
     public function save(){
@@ -55,15 +41,15 @@ class Card extends Banco{
 
         if($conn = $conexao->getConnection()){
             if($this->id > 0){
-                $query = "UPDATE user SET username = :username, alias = :alias, email = :email, password =  :password, userPerm = :userPerm where id = :id";
+                $query = "UPDATE card SET name = :name, description = :description where id = :id && id_list = :id_list";
                 $stmt = $conn->prepare($query);
-                if($stmt->execute(array(':username'=>$this->username, ':alias'=>$this->alias, ':email'=>$this->email, ':password'=>$this->password, ':userPerm'=>$this->userPerm, ':id'=>$this->id))){
+                if($stmt->execute(array(':name'=>$this->name, ':description'=>$this->description,':id'=>$this->id, ':id_list'=>$this->id_list))){
                     $result = $stmt->rowCount();
                 }
             }else{
-                $query = "INSERT INTO user (id, username, alias, email, password, userPerm) values (null, :username, :alias, :email, :password, :userPerm)";
+                $query = "INSERT INTO card (id, name, description, id_list) values (null, :name, :description, :id_list)";
                 $stmt = $conn->prepare($query);
-                if($stmt->execute(array(':username'=>$this->username, ':alias'=>$this->alias, ':email'=>$this->email, ':password'=>$this->password, ':userPerm'=>$this->userPerm))){
+                if($stmt->execute(array(':name'=>$this->name, ':description'=>$this->description, ':id_list'=>$this->id_list))){
                     $result = $stmt->rowCount();
                 }
             }
@@ -75,7 +61,7 @@ class Card extends Banco{
         $result = false;
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "DELETE FROM user WHERE id = :id";
+        $query = "DELETE FROM card WHERE id = :id";
         $stmt = $conn->prepare($query);
         if($stmt->execute(array(':id'=>$id))){
             $result = true;
@@ -86,11 +72,11 @@ class Card extends Banco{
     public function find($id){
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "SELECT * FROM user where id = :id";
+        $query = "SELECT * FROM card where id = :id";
         $stmt = $conn->prepare($query);
         if($stmt->execute(array(':id'=>$id))){
             if($stmt->rowCount() > 0){
-                $result = $stmt->fetchObject(Usuario::class);
+                $result = $stmt->fetchObject(Card::class);
             }else{
                 $result = false;
             }
@@ -105,12 +91,12 @@ class Card extends Banco{
     public function listAll(){
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "SELECT * FROM user";
+        $query = "SELECT * FROM card";
         $stmt = $conn->prepare($query);
         $result = array();
 
         if($stmt->execute()){
-            while($rs = $stmt->fetchObject(Usuario::class)){
+            while($rs = $stmt->fetchObject(Card::class)){
                 $result[] = $rs;
             }
         }else{
@@ -118,20 +104,4 @@ class Card extends Banco{
         }
         return $result;
     }
-
-    public function logar(){
-        $conexao = new Conexao();
-        $conn = $conexao->getConnection();
-        $query = "SELECT * FROM user WHERE username = :username and password = :password";
-        $stmt = $conn->prepare($query);
-        if($stmt->execute(array(':username'=>$this->username, ':password'=>$this->password))){
-            if($stmt->rowCount() > 0){
-                $result = $stmt->fetchObject(Usuario::class);
-            }else{
-                $result = false;
-            }
-            return $result;
-        }
-    }
-
 }

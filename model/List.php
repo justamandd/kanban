@@ -40,9 +40,9 @@ class List extends Banco{
                     $result = $stmt->rowCount();
                 }
             }else{
-                $query = "INSERT INTO board (id, name, id_boardList) values (null, :name, (select board.id from board as b inner join boardList as bL on b.id = id_board inner join list as l on l.id = id_list where))"; 
+                $query = "INSERT INTO board (id, name, id_boardList) values (null, :name, :id_boardList)"; 
                 $stmt = $conn->prepare($query);
-                if($stmt->execute(array(':name'=>$this->name, ':id_boardList'=>$this->id_boardList))){
+                if($stmt->execute(array(':name'=>$this->name, ':id_boardList'=>$_GET['id']))){
                     $result = $stmt->rowCount();
                 }
             }
@@ -54,7 +54,7 @@ class List extends Banco{
         $result = false;
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "DELETE FROM board WHERE id = :id";
+        $query = "DELETE FROM list WHERE id = :id";
         $stmt = $conn->prepare($query);
         if($stmt->execute(array(':id'=>$id))){
             $result = true;
@@ -65,11 +65,11 @@ class List extends Banco{
     public function find($id){
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "SELECT * FROM board where id = :id";
+        $query = "SELECT * FROM list where id = :id";
         $stmt = $conn->prepare($query);
         if($stmt->execute(array(':id'=>$id))){
             if($stmt->rowCount() > 0){
-                $result = $stmt->fetchObject(Usuario::class);
+                $result = $stmt->fetchObject(List::class);
             }else{
                 $result = false;
             }
@@ -84,12 +84,12 @@ class List extends Banco{
     public function listAll(){
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "SELECT * FROM board";
+        $query = "SELECT * FROM list";
         $stmt = $conn->prepare($query);
         $result = array();
 
         if($stmt->execute()){
-            while($rs = $stmt->fetchObject(Usuario::class)){
+            while($rs = $stmt->fetchObject(List::class)){
                 $result[] = $rs;
             }
         }else{

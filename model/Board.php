@@ -76,7 +76,7 @@ class Board extends Banco{
         $stmt = $conn->prepare($query);
         if($stmt->execute(array(':id'=>$id))){
             if($stmt->rowCount() > 0){
-                $result = $stmt->fetchObject(Usuario::class);
+                $result = $stmt->fetchObject(Board::class);
             }else{
                 $result = false;
             }
