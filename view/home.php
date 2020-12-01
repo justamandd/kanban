@@ -27,7 +27,7 @@
                 <?php 
                 if($_SESSION['userperm'] == 'A'){
                     echo '<li class="nav-item active">
-                              <a href="index.php?page=usuario&action=list" class="nav-link">Listar</a>
+                              <a href="index.php?page=usuario&action=listar" class="nav-link">Listar</a>
                           </li>';
                 }
                 ?>

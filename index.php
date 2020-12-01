@@ -8,7 +8,7 @@
     if(isset($_SESSION['logado']) && $_SESSION['logado'] == true){
         require_once 'view/home.php';
         if(isset($_GET['action'])){
-            if($_SESSION['userperm'] == 'A' && $_GET['action'] == 'list'){
+            if($_SESSION['userperm'] == 'A' && $_GET['action'] == 'listar'){
                 require_once 'view/listUsuario.php';
             }if($_GET['action'] == 'editar'){
                 $usuario = call_user_func(array('UsuarioController','editar'), $_GET['id']);
@@ -18,6 +18,7 @@
                 $usuario = call_user_func(array('UsuarioController','excluir'), $_GET['id']);
                 require_once 'view/listUsuario.php';
             }
+            
         }
         // if($_GET['page'] == 'usuario'){
         // }else if($_GET['page'] == 'board'){

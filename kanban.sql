@@ -42,3 +42,5 @@ create table card(
 );
 
 show tables;
+
+select * from card left join boardList on boardList.id = 
