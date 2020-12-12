@@ -1,3 +1,6 @@
+<?php
+    ob_start();
+?>
 </head>
 <body>
     <div class="container">
@@ -79,4 +82,5 @@
         //     header('Location: index.php');
         // }
     }
+    ob_end_flush();
 ?>

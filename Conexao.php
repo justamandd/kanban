@@ -2,7 +2,7 @@
 class Conexao{
 
     private $servername = "localhost:3306";
-    private $username = "root";
+    private $username = "justamand";
     private $password = "master";
     private $database = "kanban";
     private $connection;

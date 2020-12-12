@@ -41,6 +41,4 @@ create table card(
     foreign key(id_list) references list(id)
 );
 
-show tables;
-
-select * from card left join boardList on boardList.id = 
+select * from user;

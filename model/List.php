@@ -42,7 +42,7 @@ class List extends Banco{
             }else{
                 $query = "INSERT INTO board (id, name, id_boardList) values (null, :name, :id_boardList)"; 
                 $stmt = $conn->prepare($query);
-                if($stmt->execute(array(':name'=>$this->name, ':id_boardList'=>$_GET['id']))){
+                if($stmt->execute(array(':name'=>$this->name, ':id_boardList'=>$id_boardList))){
                     $result = $stmt->rowCount();
                 }
             }

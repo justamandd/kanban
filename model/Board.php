@@ -6,7 +6,7 @@ class Board extends Banco{
     private $id;
     private $name;
     private $description;
-    private $id_usuario = $_SESSION['id']; //talvez
+    private $id_usuario; //talvez
 
     public function getId(){
         return $this->id;
