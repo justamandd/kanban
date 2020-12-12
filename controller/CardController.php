@@ -1,6 +1,6 @@
 <?php
 require_once './model/Board.php';
-class ListController{
+class CardController{
     public function salvar(){
         $card = new Card();
 
