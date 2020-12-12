@@ -18,27 +18,10 @@ create table board(
     foreign key(id_usuario) references user(id)
 );
 
-create table list(
-	id int PRIMARY KEY AUTO_INCREMENT,
-    name varchar(20),
-    id_boardList int
-);
-
-create table boardList(
-	id int,
-	id_board int,
-    id_list int,
-    primary key(id),
-    foreign key(id_board) references board(id),
-    foreign key(id_list) references list(id)
-);
-
 create table card(
 	id int PRIMARY KEY AUTO_INCREMENT,
     name varchar(20),
     description varchar(250),
-    id_list int,
-    foreign key(id_list) references list(id)
+    id_board int,
+    foreign key(id_board) references board(id)
 );
-
-select * from user;
