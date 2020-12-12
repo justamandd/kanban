@@ -1,0 +1,23 @@
+#middled{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+/* .card-top{
+    width: 25vw;
+}
+.card-middle{
+    width: 25vw;
+    margin: 2rem;
+}
+.card-bottom{
+    width: 25vw;
+} */
+
+.centered{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
