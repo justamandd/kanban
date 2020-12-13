@@ -1,5 +1,5 @@
 </head>
-<body>
+    <body>
         <div class= "container">
             <div class = "centered">
             <!--- Form Cadastro de Board --->
@@ -31,11 +31,15 @@
                 </form> 
             </div>
         </div>
-</body>
+    </body>
 <?php
 if(isset($_POST['btnSave'])){
-    require_once '../controller/BoardController.php';
-    call_user_func(array());
+    //Inclui o Board Controller
+    include_once 'controller/BoardController.php';
+    //Chama a função da Board do metódo que será utilizado
+    call_user_func(array('BoardController','salvar'));
+
+    header('Location:index.php?action=listar');
 }
 
 ?>
