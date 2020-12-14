@@ -28,8 +28,8 @@
                             <td><?php echo $usuario->getEmail(); ?></td>
                             <td><?php echo $usuario->getUserPerm(); ?></td>
                             <td>
-                                <a href="index.php?action=editar&id=<?php echo $usuario->getId();?>" class="btn btn-primary">Editar</a>
-                                <a href="index.php?action=excluir&id=<?php echo $usuario->getId();?>" class="btn btn-danger">Excluir</a>
+                                <a href="index.php?page=usuario&action=editar&id=<?php echo $usuario->getId();?>" class="btn btn-primary">Editar</a>
+                                <a href="index.php?page=usuario&action=excluir&id=<?php echo $usuario->getId();?>" class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                         <?php
