@@ -25,3 +25,5 @@ create table card(
     id_board int,
     foreign key(id_board) references board(id)
 );
+select * from board;
+select * from user;

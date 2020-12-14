@@ -1,3 +1,7 @@
+<?php
+ob_start();
+?>
+
 </head>
     <body>
         <div class= "container">
@@ -13,12 +17,12 @@
                     <div class="card-body">
                         <!-- Nome --->
                         <div class="form-group">
-                            <input type="text" name="nome" id="nome" placeholder="Nome da Board" class="form-control form-control-lg" value="<?php echo isset($name)?$name->getName():''?>" required>
+                            <input type="text" name="name" id="name" placeholder="Nome" class="form-control form-control-lg" value="<?php echo isset($name)?$name->getName():''?>" required>
                         </div>
 
                         <!-- Descrição --->
                         <div class="form-group">
-                            <input type="text" name="desc" id="desc" placeholder="Descrição" class="form-control form-control-lg" value="<?php echo isset($desc)?$desc->getDesc():''?>" required>
+                            <input type="text" name="description" id="description" placeholder="Descrição" class="form-control form-control-lg" value="<?php echo isset($desc)?$desc->getDesc():''?>" required>
                         </div>
                     </div>
 
@@ -39,7 +43,8 @@ if(isset($_POST['btnSave'])){
     //Chama a função da Board do metódo que será utilizado
     call_user_func(array('BoardController','salvar'));
 
-    header('Location:index.php?action=listar');
+    header('Location:index.php?page=board&action=listar');
 }
+ob_end_flush();
 
 ?>

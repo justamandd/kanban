@@ -33,9 +33,10 @@
             $_SESSION['userperm'] = $usuario->getUserPerm();
             // print_r($usuario);
             $_SESSION['username'] = $_POST['username'];
+            $_SESSION['id_usuario'] = $usuario->getId();
         }
 
 
-        header('Location: index.php');
+        header('Location: index.php?page=board');
     }
 ?>

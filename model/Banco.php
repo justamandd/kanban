@@ -9,7 +9,5 @@ abstract class Banco{
     abstract public function find($id);
 
     abstract public function count();
-    
-    abstract public function listAll();
 }
 
