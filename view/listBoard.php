@@ -10,7 +10,6 @@
                         <tr>
                             <th>Nome</th>
                             <th>Descrição</th>
-                            <th><a href="BoardCadastro.php?cadastro">Novo</a></th>
                         </tr>
                     </thead>
                     <tbody>

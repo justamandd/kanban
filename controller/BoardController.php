@@ -4,17 +4,17 @@ class BoardController{
     public function salvar(){
         $board = new Board();
 
-        $board->setId($_POST['id']);
         $board->setName($_POST['name']);
         $board->setDesc($_POST['description']);
-        $board->setIdUsuario($_SESSION['id']);
+        $board->setIdUsuario($_SESSION['id_usuario']);
 
         $board->save();
     }
 
     public function listar(){
+        $id_usuario = $_SESSION['id_usuario'];
         $boards = new Board();
-        return $boards->listAll();
+        return $boards->listAll($id_usuario);
     }
 
     public function editar($id){

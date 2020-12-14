@@ -88,15 +88,15 @@ class Board extends Banco{
 
     }
     
-    public function listAll(){
+    public function listAll($id_usuario){
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "SELECT * FROM board";
+        $query = "SELECT * FROM board where id_usuario = :id_usuario";
         $stmt = $conn->prepare($query);
         $result = array();
 
-        if($stmt->execute()){
-            while($rs = $stmt->fetchObject(Usuario::class)){
+        if($stmt->execute(array(':id_usuario'=>$id_usuario))){
+            while($rs = $stmt->fetchObject(Board::class)){
                 $result[] = $rs;
             }
         }else{
