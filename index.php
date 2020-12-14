@@ -22,12 +22,17 @@
                 }
             }
         }if($_GET['page'] == 'board'){
-            require_once 'view/listBoard.php';
             if(isset($_GET['action'])){
                 if($_GET['action'] == 'cadboard'){
                     require_once 'view/boardCadastro.php';
                 }if($_GET['action'] == 'listar'){
                     require_once 'view/listBoard.php';
+                }if($_GET['action'] == 'editar'){
+                    $board = call_user_func(array('BoardController','editar'), $_GET['id']);
+                    require_once 'view/BoardCadastro.php'; 
+                }if($_GET['action'] == 'excluir'){
+                    $board = call_user_func(array('BoardController','excluir'), $_GET['id']);
+                    require_once 'view/listBoard.php'; 
                 }
             }
         }

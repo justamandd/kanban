@@ -17,19 +17,19 @@ ob_start();
                     <div class="card-body">
                         <!-- Nome --->
                         <div class="form-group">
-                            <input type="text" name="name" id="name" placeholder="Nome" class="form-control form-control-lg" value="<?php echo isset($name)?$name->getName():''?>" required>
+                            <input type="text" name="name" id="name" placeholder="Nome" class="form-control form-control-lg" value="<?php echo isset($board)?$board->getName():''?>" required>
                         </div>
 
                         <!-- Descrição --->
                         <div class="form-group">
-                            <input type="text" name="description" id="description" placeholder="Descrição" class="form-control form-control-lg" value="<?php echo isset($desc)?$desc->getDesc():''?>" required>
+                            <input type="text" name="description" id="description" placeholder="Descrição" class="form-control form-control-lg" value="<?php echo isset($board)?$board->getDesc():''?>" required>
                         </div>
                     </div>
 
                     <!-- Card Footer--->
                     <div class="card-footer">
                         <!-- -->
-                        <input type="hidden" name="id" id="id" value="<?php echo isset($id)?$id->getIdUsuario():'';?>">
+                        <input type="hidden" name="id" id="id" value="<?php echo isset($board)?$board->getIdUsuario():'';?>">
                         <button type="submit" name="btnSave" id="btnSave" class="btn btn-sucess">Salvar</button>
                     </div>
                 </form> 

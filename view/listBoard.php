@@ -2,7 +2,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header">
-                <h1 class="card-title">Board</h1>
+                <h1 class="card-title">Seus quadros</h1>
             </div>
             <div class="card-body">
                 <table class="table table-bordered">
@@ -10,6 +10,7 @@
                         <tr>
                             <th>Nome</th>
                             <th>Descrição</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,8 +24,9 @@
                             <td><?php echo $board->getName(); ?></td>
                             <td><?php echo $board->getDesc(); ?></td>
                             <td>
-                                <a href="index.php?action=editar&id=<?php echo $board->getId();?>" class="btn btn-primary">Editar</a>
-                                <a href="index.php?action=excluir&id=<?php echo $board->getId();?>" class="btn btn-danger">Excluir</a>
+                                <a href="index.php?page=board&action=abrir&id=<?php echo $board->getId();?>" class="btn btn-success">Abrir</a>
+                                <a href="index.php?page=board&action=editar&id=<?php echo $board->getId();?>" class="btn btn-primary">Editar</a>
+                                <a href="index.php?page=board&action=excluir&id=<?php echo $board->getId();?>" class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                         <?php

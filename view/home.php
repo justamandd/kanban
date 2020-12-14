@@ -8,10 +8,13 @@
         <div class="collapse navbar-collapse" id="navbarHome">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a href="index.php" class="nav-link">Home<span class="sr-only"></span></a></a>
+                    <a href="index.php?page=board" class="nav-link">Home<span class="sr-only"></span></a></a>
                 </li>
                 <li class="nav-item active">
-                    <a href="index.php?perfil" class="nav-link">Perfil</a>
+                    <a href="index.php?page=usuario&action=perfil" class="nav-link">Perfil</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="index.php?page=board&action=listar" class="nav-link">Quadros</a>
                 </li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Cadastrar</a>
