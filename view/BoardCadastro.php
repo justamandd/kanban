@@ -29,8 +29,8 @@ ob_start();
                     <!-- Card Footer--->
                     <div class="card-footer">
                         <!-- -->
-                        <input type="hidden" name="id" id="id" value="<?php echo isset($board)?$board->getIdUsuario():'';?>">
-                        <button type="submit" name="btnSave" id="btnSave" class="btn btn-sucess">Salvar</button>
+                        <input type="hidden" name="id" id="id" value="<?php echo isset($board)?$board->getId():'';?>">
+                        <button type="submit" name="btnSave" id="btnSave" class="btn btn-success">Salvar</button>
                     </div>
                 </form> 
             </div>

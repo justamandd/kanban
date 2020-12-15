@@ -7,6 +7,7 @@ class BoardController{
         $board->setName($_POST['name']);
         $board->setDesc($_POST['description']);
         $board->setIdUsuario($_SESSION['id_usuario']);
+        $board->setId($_POST['id']);
 
         $board->save();
     }

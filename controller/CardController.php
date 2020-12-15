@@ -1,20 +1,20 @@
 <?php
-require_once './model/Board.php';
+require_once './model/Card.php';
 class CardController{
     public function salvar(){
         $card = new Card();
 
-        $card->setId($_POST['id']);
+        $card->setId($_POST['id_card']);
         $card->setName($_POST['name']);
         $card->setDesc($_POST['description']);
-        $card->setIdList($_GET['id']);
+        $card->setIdBoard($_GET['id']);
 
         $card->save();
     }
 
-    public function listar(){
+    public function listar($id){
         $cards = new Card();
-        return $cards->listAll();
+        return $cards->listAll($id);
     }
 
     public function editar($id){

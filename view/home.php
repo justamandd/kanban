@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-light">
     <div class="container">
         <span class="navbar-brand h1 mb-0">KanBão</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false" aria-label="Toggle navigation">
