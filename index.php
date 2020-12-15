@@ -1,6 +1,8 @@
 <?php
     session_start();
     require_once 'controller/UsuarioController.php';
+    require_once 'controller/BoardController.php';
+    require_once 'controller/CardController.php';
     require_once 'header.php';
 ?>
 
@@ -20,6 +22,9 @@
                     $usuario = call_user_func(array('UsuarioController','excluir'), $_GET['id']);
                     require_once 'view/listUsuario.php';
                 }
+                if($_GET['action'] == 'perfil'){
+                    require_once 'view/perfil.php';
+                }
             }
         }if($_GET['page'] == 'board'){
             if(isset($_GET['action'])){
@@ -33,12 +38,26 @@
                 }if($_GET['action'] == 'excluir'){
                     $board = call_user_func(array('BoardController','excluir'), $_GET['id']);
                     require_once 'view/listBoard.php'; 
+                }if($_GET['action'] == 'abrir'){
+                    require_once 'view/listCard.php'; 
                 }
             }
         }
-        /*if(isset($_GET['page'] == 'card')){
-
-        }*/
+        if($_GET['page'] == 'card'){
+            if(isset($_GET['action'])){
+                if($_GET['action'] == 'criar'){
+                    require_once 'view/cadastroCard.php';
+                }
+                if($_GET['action'] == 'editar'){
+                    $card = call_user_func(array('CardController','editar'),$_GET['id_card']);
+                    require_once 'view/cadastroCard.php'; 
+                }
+                if($_GET['action'] == 'excluir'){
+                    $card = call_user_func(array('CardController','excluir'),$_GET['id_card']);
+                    require_once 'view/listCard.php';
+                }
+            }
+        }
     }else{
         if(isset($_GET['cadastro'])){
             require_once 'view/cadastro.php';

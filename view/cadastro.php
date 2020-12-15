@@ -12,7 +12,7 @@
 
                     <!-- Card Header -->
                     <div class="card-header">
-                        <h1 class="card-title">Cadastro</h1>
+                        <h1 class="card-title"><?php if(isset($_GET['action'])){echo 'Editar';}else{echo 'Cadastro';} ?></h1>
                     </div>
 
                     <!-- Card Body -->
@@ -76,7 +76,11 @@
         require_once 'controller/UsuarioController.php';
         //Chama uma função php que permite informar a classe método que será acionado 
         call_user_func(array('UsuarioController','salvar'));
-        header('Location:index.php?action=listar');
+        if(isset($_GET['action'])){
+            header('Location:index.php?page=usuario&action=perfil');
+        }else{
+            header('Location:index.php?page=board');
+        } 
         // if($_SESSION['logado']) && $_SESSION['logado'] == true && $_SESSION['userperm'] == 'A'){
         // }else{
         //     header('Location: index.php');

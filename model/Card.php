@@ -6,7 +6,7 @@ class Card extends Banco{
     private $id;
     private $name;
     private $description;
-    private $id_list = $_SESSION['list'];
+    private $id_board;
 
     public function getId(){
         return $this->id;
@@ -17,8 +17,8 @@ class Card extends Banco{
     public function getDesc(){
         return $this->description;
     }
-    public function getIdList(){
-        return $this->id_list;
+    public function getIdBoard(){
+        return $this->id_board;
     }
 
     public function setId($id){
@@ -30,8 +30,8 @@ class Card extends Banco{
     public function setDesc($desc){
         $this->description = $desc;
     }
-    public function setIdList($id_list){
-        $this->id_list = $id_list;
+    public function setIdBoard($id_board){
+        $this->id_board = $id_board;
     }
 
     public function save(){
@@ -41,15 +41,15 @@ class Card extends Banco{
 
         if($conn = $conexao->getConnection()){
             if($this->id > 0){
-                $query = "UPDATE card SET name = :name, description = :description where id = :id && id_list = :id_list";
+                $query = "UPDATE card SET name = :name, description = :description where id = :id";
                 $stmt = $conn->prepare($query);
-                if($stmt->execute(array(':name'=>$this->name, ':description'=>$this->description,':id'=>$this->id, ':id_list'=>$this->id_list))){
+                if($stmt->execute(array(':name'=>$this->name, ':description'=>$this->description,':id'=>$this->id))){
                     $result = $stmt->rowCount();
                 }
             }else{
-                $query = "INSERT INTO card (id, name, description, id_list) values (null, :name, :description, :id_list)";
+                $query = "INSERT INTO card (id, name, description, id_board) values (null, :name, :description, :id_board)";
                 $stmt = $conn->prepare($query);
-                if($stmt->execute(array(':name'=>$this->name, ':description'=>$this->description, ':id_list'=>$this->id_list))){
+                if($stmt->execute(array(':name'=>$this->name, ':description'=>$this->description, ':id_board'=>$this->id_board))){
                     $result = $stmt->rowCount();
                 }
             }
@@ -91,7 +91,7 @@ class Card extends Banco{
     public function listAll(){
         $conexao = new Conexao();
         $conn = $conexao->getConnection();
-        $query = "SELECT * FROM card";
+        $query = "SELECT * FROM card INNER JOIN board ON board.id = id_board";
         $stmt = $conn->prepare($query);
         $result = array();
 

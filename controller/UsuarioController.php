@@ -25,6 +25,12 @@ class UsuarioController{
         return $usuario;
     }
 
+    public function infoPerfil($id){
+        $usuario = new Usuario();
+        $usuario = $usuario->find($id);
+        return $usuario;
+    }
+
     public function excluir($id){
         $usuario = new Usuario();
         $usuario = $usuario->remove($id);
